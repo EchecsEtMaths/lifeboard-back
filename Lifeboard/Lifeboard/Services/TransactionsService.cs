@@ -39,5 +39,24 @@ namespace Lifeboard.Services
             }
             return results;
         }
+
+        public async Task<TotalCourant> GetTotalCourant()
+        {
+            using var conn = new MySqlConnection(_connectionString);
+            await conn.OpenAsync();
+
+            var cmd = new MySqlCommand("SELECT SUM(montant) as total FROM finances.transactions WHERE compte_id = 1", conn);
+            using var reader = await cmd.ExecuteReaderAsync();
+
+            var result = new TotalCourant();
+            while (await reader.ReadAsync())
+            {
+                result = new TotalCourant
+                {
+                    Total = reader.GetInt32("total")
+                };
+            }
+            return result;
+        }
     }
 }

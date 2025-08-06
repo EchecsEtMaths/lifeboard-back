@@ -14,10 +14,18 @@ namespace Lifeboard.Controllers
             _transactionsService = transactionsService;
         }
 
-        [HttpGet(Name = "GetTransactions")]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var result = await _transactionsService.GetTransactions();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("total-courant")]
+        public async Task<IActionResult> GetTotalCourant()
+        {
+            var result = await _transactionsService.GetTotalCourant();
             return Ok(result);
         }
     }
