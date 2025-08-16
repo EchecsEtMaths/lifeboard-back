@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<TransactionsService>();
+builder.Services.AddScoped<CategoriesService>();
 
 builder.Services.AddCors(options =>
 {
