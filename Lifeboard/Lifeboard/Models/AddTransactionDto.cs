@@ -6,5 +6,6 @@
         public DateTime Date { get; set; }
         public string Montant { get; set; }
         public string Categorie { get; set; }
+        public bool Commun { get; set; }
     }
 }

@@ -33,6 +33,8 @@ function construtTable(tableName, data) {
         ? "Montant"
         : col === "nom"
         ? "Nom"
+        : col === "commun"
+        ? "Dépense commune"
         : col;
 
     headRow.appendChild(th);
@@ -93,6 +95,15 @@ function construtTable(tableName, data) {
           style: "currency",
           currency: "EUR",
         }).format(value);
+      }
+
+      if (col === "commun") {
+        if (value) {
+          value = "✅";
+        } else {
+          value = "❌";
+        }
+        td.style.paddingLeft = "7%";
       }
 
       td.textContent = value ?? "Aucun";
@@ -257,6 +268,7 @@ document.getElementById("add-form").addEventListener("submit", (event) => {
   document.getElementById("date-add").value = "";
   document.getElementById("montant-add").value = formatter.format(0);
   document.getElementById("categorie-add").value = "";
+  document.getElementById("commun-add").checked = false;
 });
 
 document.querySelectorAll(".montant").forEach((input) => {

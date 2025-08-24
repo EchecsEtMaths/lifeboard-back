@@ -24,6 +24,14 @@ namespace Lifeboard.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("commun")]
+        public async Task<IActionResult> GetCommuns()
+        {
+            var result = await _transactionsService.GetTransactionsCommuns();
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Add([FromQuery] string? user, [FromBody] AddTransactionDto transaction)
         {
