@@ -7,5 +7,6 @@
         public DateTime DateTransac { get; set; }
         public decimal Montant { get; set; }
         public string CategorieNom { get; set; }
+        public bool Commun { get; set; }
     }
 }

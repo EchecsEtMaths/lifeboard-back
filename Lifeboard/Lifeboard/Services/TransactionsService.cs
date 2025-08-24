@@ -18,7 +18,7 @@ namespace Lifeboard.Services
             using var conn = new MySqlConnection(_connectionString);
             await conn.OpenAsync();
             
-            var cmd = new MySqlCommand("SELECT t.id, t.nom, t.date_transac, t.montant, c.nom as categorie " +
+            var cmd = new MySqlCommand("SELECT t.id, t.nom, t.date_transac, t.montant, c.nom as categorie, t.commun " +
                 "FROM transactions t " +
                 "INNER JOIN categorie c ON t.categorie_id = c.id " +
                 "WHERE compte_Id = 1 " +
@@ -34,7 +34,8 @@ namespace Lifeboard.Services
                     Nom = reader.GetString("nom"),
                     DateTransac = reader.GetDateTime("date_transac"),
                     Montant = reader.GetDecimal("montant"),
-                    CategorieNom = reader.GetString("categorie")
+                    CategorieNom = reader.GetString("categorie"),
+                    Commun = reader.GetBoolean("commun")
                 };
                 results.Add(transaction);
             }
@@ -84,7 +85,7 @@ namespace Lifeboard.Services
             using var conn = new MySqlConnection(_connectionString);
             await conn.OpenAsync();
 
-            var cmd = new MySqlCommand("SELECT t.id, t.nom, t.date_transac, t.montant, c.nom as categorie " +
+            var cmd = new MySqlCommand("SELECT t.id, t.nom, t.date_transac, t.montant, c.nom as categorie, t.commun " +
                 "FROM transactions t " +
                 "INNER JOIN categorie c ON t.categorie_id = c.id " +
                 "WHERE compte_Id = 1 AND t.user = @user " +
@@ -102,7 +103,8 @@ namespace Lifeboard.Services
                     Nom = reader.GetString("nom"),
                     DateTransac = reader.GetDateTime("date_transac"),
                     Montant = reader.GetDecimal("montant"),
-                    CategorieNom = reader.GetString("categorie")
+                    CategorieNom = reader.GetString("categorie"),
+                    Commun = reader.GetBoolean("commun")
                 };
                 results.Add(transaction);
             }

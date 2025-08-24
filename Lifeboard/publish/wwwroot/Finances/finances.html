@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lifeboard - Finances</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3/dist/dexie.min.js"></script>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+    <a class="back-button" href="../Accueil/accueil.html">🏠</a>
+    <button class="profil-button" popovertarget="profil-popover">👤</button>
+    <div popover id="profil-popover">
+        <div class="liste-deconnexion">
+            <button class="deconnexion" onclick="deconnexion()">Se déconnecter</button>
+        </div>
+    </div>
+    <h1>Finances</h1>
+
+    <div class="menu-conteneur">
+        <a class="menu-item" href="../Finances/FinancesPerso/financesPerso.html">🔒 Finances persos</a>
+        <a class="menu-item" href="../Finances/FinancesCouple/financesCouple.html">💍 Finances de couple</a>
+    </div>
+
+    <script src="../const.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

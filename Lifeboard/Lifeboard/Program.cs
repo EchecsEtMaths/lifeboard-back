@@ -22,6 +22,19 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // HTTPS pour localhost (dev)
+    if (builder.Environment.IsDevelopment())
+    {
+        options.ListenLocalhost(7040, listenOptions => listenOptions.UseHttps());
+    } else
+    {
+        // HTTP réseau local
+        options.ListenAnyIP(5000);
+    }
+
+});
 
 var app = builder.Build();
 app.UseCors();
@@ -38,5 +51,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.Run();
